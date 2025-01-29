@@ -3,8 +3,8 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/:id/:folder/:advId",
-      "destination": "/:id/:folder/:advId/index.html"
+      "source": "/:id/:folder/advertoriais/:advId",
+      "destination": "/:id/:folder/advertoriais/:advId/index.html"
     }
   ],
   "headers": [
