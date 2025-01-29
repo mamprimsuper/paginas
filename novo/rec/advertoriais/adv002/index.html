@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEWS | Notícias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .main-nav {
+            background: #C4170C;
+            padding: 12px 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+
+        .content-wrapper {
+            padding: 15px 0;
+        }
+
+        .main-article {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .article-headline {
+            font-size: 24px;
+            line-height: 1.3;
+            margin: 15px 0;
+            color: #1a1a1a;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 13px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+
+        .image-container {
+            margin: 0 -15px 15px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 12px;
+            padding: 8px 15px;
+            background: #f8f8f8;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-box {
+            font-size: 20px;
+            color: #C4170C;
+            font-style: italic;
+            padding: 15px;
+            border-left: 4px solid #C4170C;
+            background: #f8f8f8;
+            margin: 20px 0;
+        }
+
+        .ad-container {
+            background: #f8f8f8;
+            padding: 20px 15px;
+            margin: 20px -15px;
+        }
+
+        .analysis-box {
+            background: white;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .analysis-header {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .analysis-header h3 {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+        }
+
+        .analysis-content {
+            text-align: left;
+        }
+
+        .main-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .sub-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .analysis-button {
+            background: #C4170C;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 12px 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(196, 23, 12, 0.2);
+        }
+
+        .analysis-button:hover {
+            background: #a01209;
+            transform: translateY(-1px);
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(196, 23, 12, 0.7);
+            }
+            
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(196, 23, 12, 0);
+            }
+            
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(196, 23, 12, 0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #C4170C,
+                           0 0 10px #C4170C,
+                           0 0 15px #C4170C;
+            }
+            to {
+                box-shadow: 0 0 10px #C4170C,
+                           0 0 20px #C4170C,
+                           0 0 30px #C4170C;
+            }
+        }
+
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .check-icon {
+            color: #C4170C;
+            font-weight: bold;
+        }
+
+        .final-cta {
+            margin: 40px -15px 20px;
+            padding: 20px 15px;
+            background: #f8f8f8;
+        }
+
+        .more-news {
+            margin: 30px 0;
+        }
+
+        .more-news h3 {
+            color: #C4170C;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #C4170C;
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: 1fr;
+        }
+
+        .news-card {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .news-card h4 {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px 15px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .footer h3 {
+            color: #C4170C;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 1200px;
+                padding: 0 30px;
+            }
+
+            .content-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 300px;
+                gap: 30px;
+                padding: 30px 0;
+            }
+
+            .article-headline {
+                font-size: 36px;
+            }
+
+            .main-article {
+                padding: 25px;
+            }
+
+            .image-container {
+                margin: 0 -25px 20px;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .benefits {
+                flex-direction: row;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .analysis-button {
+                width: auto;
+            }
+
+            .final-cta {
+                margin: 60px 0 30px;
+                padding: 0;
+            }
+
+            .ad-container {
+                margin: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">Notícias Em Destaque | Janeiro 2025</div>
+    </div>
+    <nav class="main-nav">
+        <div class="container">NEWS</div>
+    </nav>
+    <div class="container">
+        <main class="main-article">
+            <span style="color:#C4170C;font-weight:bold;">ENTREVISTA EXCLUSIVA</span>
+            <h1 class="article-headline">"Recuperei minha vitalidade": Famoso ator brasileiro revela segredo de sua transformação</h1>
+            <div class="article-meta">Por Ricardo Santos | Publicado em 17 de Janeiro de 2025 às 09:00 | Atualizado há 2 horas</div>
+            
+            <div class="article-content">
+                <p style="font-size:18px;color:#444;line-height:1.6;margin-bottom:20px;">Em uma entrevista reveladora, o renomado ator brasileiro compartilha como recuperou sua energia e disposição com uma descoberta inovadora.</p>
+                
+                <p>O ator, conhecido por sua dedicação à arte e profissionalismo, conta que encontrou no Vital 360 a solução para manter sua energia em alta durante as longas jornadas de gravação.</p>
+
+                <div class="quote-box">"Eu estava começando a sentir o peso da idade. Mas depois que conheci essa fórmula, minha disposição mudou completamente. Me sinto 20 anos mais jovem!"</div>
+
+                <p>O veterano das telinhas compartilhou que sua rotina intensa de gravações estava começando a pesar, até que descobriu o Vital 360. "É impressionante como uma solução tão simples pode fazer tanta diferença", revela o ator.</p>
+
+                <div class="ad-container">
+                    <div class="analysis-box">
+                        <div class="analysis-header">
+                            <h3>Avaliação Personalizada</h3>
+                        </div>
+                        <div class="analysis-content">
+                            <p class="main-text">Descubra como melhorar sua disposição</p>
+                            <p class="sub-text">Responda algumas perguntas rápidas e receba sua análise gratuita.</p>
+                            <button onclick="window.location.href='https://news.flowhosted.com/quizz-vital/'" class="analysis-button">
+                                Avaliar agora
+                            </button>
+                            <div class="benefits">
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    100% Grátis
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    Resultado Imediato
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    Totalmente Confidencial
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>O ator ressalta que os resultados vão além do aspecto profissional. Sua esposa também compartilhou sua perspectiva sobre a transformação: "A mudança foi impressionante. Ele está mais disposto, mais alegre, com uma energia que me faz lembrar do início do nosso relacionamento", revela ela.</p>
+
+                <div class="quote-box">"Nossa conexão ficou ainda mais forte. É como se ele tivesse encontrado um novo fôlego para a vida"</div>
+
+                <p>O casal afirma que o Vital 360 trouxe uma nova dinâmica para a relação. "Quando um dos parceiros está bem consigo mesmo, todo o relacionamento floresce", acrescenta ela.</p>
+
+                <p>O ator explica que os resultados começaram a aparecer nas primeiras semanas. "Meus colegas de elenco notaram a diferença. Agora consigo manter a energia durante todo o dia de gravação, algo que estava ficando cada vez mais difícil", conta.</p>
+
+                <div class="quote-box">"É reconfortante saber que posso continuar fazendo o que amo, com a mesma disposição de sempre."</div>
+
+                <p>O artista ressalta que a mudança não foi apenas física. "Minha confiança aumentou, meu humor melhorou, e isso reflete no meu trabalho e na minha vida pessoal", afirma ele, que continua brilhando nas telinhas.</p>
+
+                <p style="font-size:12px;color:#666;margin-top:30px;">* Resultados podem variar de pessoa para pessoa</p>
+                
+                <div class="final-cta">
+                    <div class="analysis-box">
+                        <div class="analysis-content">
+                            <p class="main-text">Descubra o suplemento que está ajudando milhares de brasileiros a recuperar a vida sexual que estava perdida</p>
+                            <button onclick="window.location.href='https://news.flowhosted.com/quizz-vital/'" class="analysis-button glow-button">
+                                QUERO RECUPERAR MINHA DISPOSIÇÃO AGORA
+                            </button>
+                            <div class="benefits">
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    Fórmula Natural
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    Resultados Comprovados
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="check-icon">✓</span>
+                                    Entrega Discreta
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="container">
+        <div class="more-news">
+            <h3>MAIS LIDAS</h3>
+            <div class="news-grid">
+                <a href="#" class="news-card">
+                    <h4>Segredo dos artistas para manter a energia</h4>
+                </a>
+                <a href="#" class="news-card">
+                    <h4>5 dicas para melhorar a disposição depois dos 50</h4>
+                </a>
+                <a href="#" class="news-card">
+                    <h4>Novo método revoluciona a saúde masculina</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>SOBRE</h3>
+                    <ul>
+                        <li><a href="#">Sobre o NEWS</a></li>
+                        <li><a href="#">Nossa equipe</a></li>
+                        <li><a href="#">Princípios editoriais</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>CATEGORIAS</h3>
+                    <ul>
+                        <li><a href="#">Saúde</a></li>
+                        <li><a href="#">Bem-estar</a></li>
+                        <li><a href="#">Celebridades</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>CONTATO</h3>
+                    <ul>
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">Portal de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© Copyright 2025 - NEWS Globo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
