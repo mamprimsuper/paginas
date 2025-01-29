@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/:id/:folder/advertoriais/:advId",
+      "destination": "/:id/:folder/advertoriais/:advId/index.html"
+    }
+  ]
+}
